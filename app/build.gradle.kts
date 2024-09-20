@@ -67,18 +67,25 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    val retrofitVersion = "2.11.0"
-    implementation ("com.squareup.retrofit2:retrofit:$retrofitVersion")
-    implementation ("com.squareup.retrofit2:converter-gson:$retrofitVersion")
 
-    implementation("androidx.compose.runtime:runtime-livedata:1.6.6")
-    implementation("io.coil-kt:coil-compose:2.6.0")
+    // for retrofit
+    implementation (libs.retrofit)
+
+    // for converter gson to convert json to kotlin
+    implementation (libs.converter.gson)
+
+    // for live data
+    implementation(libs.androidx.runtime.livedata)
+
+    // for image loading
+    implementation(libs.coil.compose)
 
     // for status bar
-    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
+    implementation (libs.accompanist.systemuicontroller)
 
-    implementation ("androidx.navigation:navigation-compose:2.7.1")
+    // for navigation
+    implementation (libs.androidx.navigation.compose)
 
     // for passing the data to other composable
-    implementation ("com.google.code.gson:gson:2.8.9")
+    implementation (libs.gson)
 }
