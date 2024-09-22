@@ -88,4 +88,8 @@ dependencies {
 
     // for passing the data to other composable
     implementation (libs.gson)
+
+    //
+    implementation ("com.google.accompanist:accompanist-placeholder-material:0.30.0")
+
 }
