@@ -41,6 +41,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -112,8 +113,6 @@ fun SearchBar(viewModel: WeatherViewModel, navController: NavController) {
     // Keyboard Controller
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    Log.d("TAG", "SearchBar")
-
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -129,14 +128,14 @@ fun SearchBar(viewModel: WeatherViewModel, navController: NavController) {
         ) {
             OutlinedTextField(
                 modifier = Modifier.weight(1f)
-                    .testTag("SearchField"),
-                shape = MaterialTheme.shapes.medium,
+                    .testTag(stringResource(R.string.search_field_tag_text)),
+                shape = MaterialTheme.shapes.extraLarge,
                 value = city,
                 onValueChange = {
                     city = it
                 },
                 label = {
-                    Text(text = "Search for any location")
+                    Text(text = stringResource(R.string.search_bar_text))
                 },
                 trailingIcon = {
                     IconButton(onClick = {
@@ -146,11 +145,11 @@ fun SearchBar(viewModel: WeatherViewModel, navController: NavController) {
                             keyboardController?.hide()
                         }
                     },
-                        modifier = Modifier.testTag("OpenDetailsPage")
+                        modifier = Modifier.testTag(stringResource(R.string.open_details_page_tag_text))
                     ) {
                         Icon(
                             imageVector = Icons.Default.Search,
-                            contentDescription = "Search for any location"
+                            contentDescription = stringResource(R.string.search_bar_text)
                         )
                     }
                 }
@@ -174,7 +173,6 @@ fun SearchBar(viewModel: WeatherViewModel, navController: NavController) {
 
             // Handle successful response state
             is NetworkResponse.Success -> {
-                Log.d("TAG", "Redirecting to detail page")
 
                 //
                 if (redirect) {
@@ -237,7 +235,7 @@ fun EmptyFavoritesScreen() {
         // Image or illustration
         Image(
             painter = painterResource(id = R.drawable.empty_list), // Add your illustration here
-            contentDescription = "No Favorites",
+            contentDescription = stringResource(R.string.no_favourites_text),
             modifier = Modifier
                 .size(120.dp)
                 .padding(bottom = 16.dp),
@@ -246,7 +244,7 @@ fun EmptyFavoritesScreen() {
 
         // Message text
         Text(
-            text = "No Favorite Cities Yet!",
+            text = stringResource(R.string.no_cities_text),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black
@@ -256,7 +254,7 @@ fun EmptyFavoritesScreen() {
 
         // Secondary text
         Text(
-            text = "Start adding cities to your favorites list",
+            text = stringResource(R.string.home_screen_text),
             fontSize = 16.sp,
             color = Color.Black
         )

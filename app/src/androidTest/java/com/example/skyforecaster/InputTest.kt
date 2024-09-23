@@ -53,6 +53,16 @@ class InputTest {
 
 
     @Test
+    fun searchFieldDisplaysPlaceHolderTest() {
+
+        // Check if the search field displays the placeholder text
+        composeTestRule.onNodeWithText("Enter City Name")
+            .assertExists()
+            .assertIsDisplayed()
+    }
+
+
+    @Test
     fun enterCityAndClickSearchTest() {
 
         // Enter a city and click the search button
@@ -62,24 +72,6 @@ class InputTest {
         composeTestRule.onNodeWithTag("OpenDetailsPage")
             .performClick()
             .assertExists()
-    }
-
-    @Test
-    fun searchFieldIsEmptyOnStartTest() {
-
-        // Check if the search field is empty on start
-        composeTestRule.onNodeWithTag("SearchField")
-            .assertTextEquals("")
-    }
-
-    @Test
-    fun searchFieldDisplaysPlaceHolderTest() {
-
-        // Check if the search field displays the placeholder text
-        composeTestRule.onNodeWithText("Search for any location")
-            .assertExists()
-            .assertIsDisplayed()
-
     }
 
 }

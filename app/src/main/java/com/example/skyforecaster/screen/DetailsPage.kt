@@ -23,12 +23,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
+import com.example.skyforecaster.R
 import com.example.skyforecaster.model.Item0
 import com.example.skyforecaster.model.WeatherMapApiModel
 import com.example.skyforecaster.storage.LocalStorage
@@ -59,7 +61,7 @@ fun DetailsPage(
     }
 
     Column(
-        modifier = Modifier.testTag("DetailsPage")
+        modifier = Modifier.testTag(stringResource(R.string.details_page_tag_text))
     ) {
         AddAndCancelButton(navController = navController, weatherData, current)
         MainWeatherInfo(weatherData)
@@ -82,7 +84,7 @@ private fun AddAndCancelButton(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Button(
-            modifier = Modifier.testTag("CancelButton"),
+            modifier = Modifier.testTag(stringResource(R.string.cancel_button_tag_text)),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.Transparent, // Set background to transparent
                 contentColor = Color.Black // Text color
@@ -90,10 +92,14 @@ private fun AddAndCancelButton(
             onClick = {
                 navController.popBackStack(HOME_PAGE, inclusive = false)
             }) {
-            Text(text = "Cancel", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
+            Text(
+                text = stringResource(R.string.cancel_button_text),
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 16.sp
+            )
         }
         Button(
-            modifier = Modifier.testTag("AddButton"),
+            modifier = Modifier.testTag(stringResource(R.string.add_button_tag_text)),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.Transparent, // Set background to transparent
                 contentColor = Color.Black // Text color
@@ -102,7 +108,7 @@ private fun AddAndCancelButton(
                 navController.navigate(HOME_PAGE)
             }) {
             Text(
-                text = "Add",
+                text = stringResource(R.string.add_button_text),
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 16.sp
             )
@@ -166,7 +172,7 @@ private fun HourlyForcastInfo(weatherData: WeatherMapApiModel) {
     ) {
         // Title
         Text(
-            text = "DAILY FORECAST",
+            text = stringResource(R.string.daily_title),
             color = Color.Black,
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold,
@@ -218,7 +224,7 @@ fun HourlyForecastItem(time: String, temperature: String, icon: String) {
         AsyncImage(
             modifier = Modifier.size(60.dp),
             model = icon,
-            contentDescription = "Condition icon"
+            contentDescription = stringResource(R.string.condition_icon_desc)
         )
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -246,7 +252,7 @@ fun FiveDayForecastInfo(weatherData: WeatherMapApiModel) {
         Column(modifier = Modifier.padding(16.dp)) {
             // Title
             Text(
-                text = "5-DAY FORECAST",
+                text = stringResource(R.string.weekly_title),
                 color = Color.Black,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold

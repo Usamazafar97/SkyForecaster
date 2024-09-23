@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">SkyForecaster</string>
+    <string name="search_bar_text">Enter City Name</string>
+    <string name="no_cities_text">No Favorite Cities Yet!</string>
+    <string name="no_favourites_text">No Favorites</string>
+    <string name="home_screen_text">Start adding cities to your favourites list</string>
+    <string name="home_screen_title">SkyForecaster</string>
+    <string name="daily_title">DAILY FORECAST</string>
+    <string name="weekly_title">5-DAY FORECAST</string>
+    <string name="condition_icon_desc">Condition icon</string>
+
+
+    <string name="add_button_text">Add</string>
+    <string name="cancel_button_text">Cancel</string>
+
+
+    <string name="details_page_tag_text">DetailsPage</string>
+    <string name="cancel_button_tag_text">CancelButton</string>
+    <string name="add_button_tag_text">AddButton</string>
+    <string name="search_field_tag_text">SearchField</string>
+    <string name="open_details_page_tag_text">OpenDetailsPage</string>
+
+
 </resources>
