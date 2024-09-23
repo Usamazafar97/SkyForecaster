@@ -5,7 +5,7 @@ SkyForcaster is a modern weather forecasting app that provides real-time weather
 
 ## 2. User Stories & App Architecture 🌟 
 
-Before development, I carefully crafted user stories to guide the app’s functionality, focusing on a smooth user experience. Below is a visual representation of our architecture and screen flow:
+Before development, I carefully crafted user stories to guide the app’s functionality, focusing on a smooth user experience. Below is a visual representation of the architecture and screen flow:
 
 ### User Stories, Architecture & Screen Flow
 
@@ -75,7 +75,7 @@ Comprehensive unit tests were implemented to ensure app stability and reliable f
 The app integrates with the **OpenWeatherMap API** for real-time data. Make sure to include your API key as instructed above.
 
 ## 8. Contribution
-We welcome contributions! Feel free to submit a pull request or report an issue. Let’s build a better weather app together!
+I welcome contributions! Feel free to submit a pull request or report an issue. Let’s build a better weather app together!
 
 ---
 
