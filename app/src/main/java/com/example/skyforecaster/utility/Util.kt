@@ -11,14 +11,7 @@ import java.util.*
 
 object Util {
 
-    fun convertDate(dateTime: String): String {
-        val inputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-        val outputFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-
-        val date = inputFormat.parse(dateTime)
-        return outputFormat.format(date)
-    }
-
+    // Convert date and time to a readable format
     fun convertTime(dateTime: String): String {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         val outputFormat = SimpleDateFormat("hh a", Locale.getDefault())
@@ -27,41 +20,12 @@ object Util {
         return outputFormat.format(date)
     }
 
-    fun convertToDayOfWeek(dateTime: String): String {
-        val inputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-        val date = inputFormat.parse(dateTime)
-
-        // Get the current date without time
-        val currentDate = Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, 0)
-            set(Calendar.MINUTE, 0)
-            set(Calendar.SECOND, 0)
-            set(Calendar.MILLISECOND, 0)
-        }
-
-        // Get the parsed date in calendar format without time
-        val targetDate = Calendar.getInstance().apply {
-            time = date
-            set(Calendar.HOUR_OF_DAY, 0)
-            set(Calendar.MINUTE, 0)
-            set(Calendar.SECOND, 0)
-            set(Calendar.MILLISECOND, 0)
-        }
-
-        // Check if the target date is today
-        return if (currentDate == targetDate) {
-            "Today"
-        } else {
-            // Format as a day of the week (e.g., Fri, Sat, Sun)
-            val outputFormat = SimpleDateFormat("EEE", Locale.getDefault())
-            outputFormat.format(date)
-        }
-    }
-
+    // Extract the day of the week from a date
     fun extractDayOfWeek(dtTxt: String): String {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         val date = inputFormat.parse(dtTxt)
 
+        // Create a SimpleDateFormat instance to format the date
         val dayFormat = SimpleDateFormat("EEE", Locale.getDefault())
         val todayDate = Calendar.getInstance()
         val targetDate = Calendar.getInstance().apply { time = date }
@@ -71,11 +35,12 @@ object Util {
             todayDate.get(Calendar.DAY_OF_YEAR) == targetDate.get(Calendar.DAY_OF_YEAR)) {
             "Today"
         } else {
-            // Return day abbreviation (e.g., Fri, Sat)
+            // Return day e.g Fri
             dayFormat.format(date)
         }
     }
 
+    // Filter the forecast list to get only the first item for each day
     fun get5DayForecast(forecastList: List<Item0>): List<Item0> {
         val daysAdded = mutableSetOf<String>()  // Keep track of which days are already added
         val filteredForecast = mutableListOf<Item0>()
@@ -94,6 +59,7 @@ object Util {
         return filteredForecast
     }
 
+    // Get the current time in a readable format
     @RequiresApi(Build.VERSION_CODES.O)
     fun getCurrentTimeFormatted(): String {
         val currentTime = LocalTime.now()
@@ -101,6 +67,7 @@ object Util {
         return currentTime.format(formatter)
     }
 
+    // Find the closest temperature to the current time
     fun getClosestTemperature(itemList: List<Item0>): Item0? {
         // Define the date format that matches `dt_txt`
         val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
@@ -113,6 +80,7 @@ object Util {
         var closestItem: Item0? = null
         var minDifference = Long.MAX_VALUE
 
+        // Iterate through the list and find the closest time
         for (item in itemList) {
             val itemDate = dateFormat.parse(item.dt_txt) ?: continue
             val timeDifference = Math.abs(now.time - itemDate.time)

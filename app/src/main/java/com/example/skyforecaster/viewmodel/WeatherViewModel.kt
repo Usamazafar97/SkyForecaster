@@ -17,7 +17,10 @@ class WeatherViewModel :ViewModel() {
     private val _weatherResult = MutableLiveData<NetworkResponse<WeatherMapApiModel>>()
     val weatherResult : LiveData<NetworkResponse<WeatherMapApiModel>> = _weatherResult
 
-
+    // Method to set weather data
+    fun setWeatherData(data: WeatherMapApiModel) {
+        _weatherResult.value  = NetworkResponse.Success(data)
+    }
 
     fun getData(city : String){
         _weatherResult.value = NetworkResponse.Loading

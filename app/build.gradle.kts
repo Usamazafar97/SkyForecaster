@@ -60,6 +60,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     testImplementation(libs.junit)
+    testImplementation(libs.androidx.ui.test.android)
+    testImplementation(libs.androidx.ui.test.junit4.android)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
@@ -89,7 +91,31 @@ dependencies {
     // for passing the data to other composable
     implementation (libs.gson)
 
-    //
-    implementation ("com.google.accompanist:accompanist-placeholder-material:0.30.0")
+    dependencies {
+        // JUnit for unit testing
+        testImplementation ("junit:junit:4.13.2")
+
+        // AndroidX Test for instrumented tests (for Compose UI)
+        androidTestImplementation ("androidx.test.ext:junit:1.1.3")
+        androidTestImplementation ("androidx.test.espresso:espresso-core:3.4.0")
+
+        // Jetpack Compose testing
+        androidTestImplementation ("androidx.compose.ui:ui-test-junit4:1.1.0")
+        debugImplementation ("androidx.compose.ui:ui-test-manifest:1.1.0")
+
+
+
+        // Coroutines for testing ViewModel logic
+        testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
+
+        testImplementation("org.mockito:mockito-core:5.12.0")
+        testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
+
+        // If you're using Kotlin coroutines with LiveData
+        testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
+    }
+
+
+
 
 }

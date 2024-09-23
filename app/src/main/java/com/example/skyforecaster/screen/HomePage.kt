@@ -39,6 +39,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -127,7 +128,8 @@ fun SearchBar(viewModel: WeatherViewModel, navController: NavController) {
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             OutlinedTextField(
-                modifier = Modifier.weight(1f),
+                modifier = Modifier.weight(1f)
+                    .testTag("SearchField"),
                 shape = MaterialTheme.shapes.medium,
                 value = city,
                 onValueChange = {
@@ -143,7 +145,9 @@ fun SearchBar(viewModel: WeatherViewModel, navController: NavController) {
                             viewModel.getData(city)
                             keyboardController?.hide()
                         }
-                    }) {
+                    },
+                        modifier = Modifier.testTag("OpenDetailsPage")
+                    ) {
                         Icon(
                             imageVector = Icons.Default.Search,
                             contentDescription = "Search for any location"

@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,15 +48,19 @@ fun PreviewDetailsPage(
 
 @Composable
 fun DetailsPage(
-    navController : NavController,
+    navController: NavController,
     weatherData: WeatherMapApiModel,
     current: Context
 ) {
+
+    // Handle the back press to navigate back
     BackHandler {
-        navController.popBackStack() // Handle the back press to navigate back
+        navController.popBackStack()
     }
 
-    Column {
+    Column(
+        modifier = Modifier.testTag("DetailsPage")
+    ) {
         AddAndCancelButton(navController = navController, weatherData, current)
         MainWeatherInfo(weatherData)
         HourlyForcastInfo(weatherData)
@@ -77,6 +82,7 @@ private fun AddAndCancelButton(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Button(
+            modifier = Modifier.testTag("CancelButton"),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.Transparent, // Set background to transparent
                 contentColor = Color.Black // Text color
@@ -87,6 +93,7 @@ private fun AddAndCancelButton(
             Text(text = "Cancel", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
         }
         Button(
+            modifier = Modifier.testTag("AddButton"),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.Transparent, // Set background to transparent
                 contentColor = Color.Black // Text color
@@ -94,7 +101,11 @@ private fun AddAndCancelButton(
                 saveData(weatherData, current)
                 navController.navigate(HOME_PAGE)
             }) {
-            Text(text = "Add", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
+            Text(
+                text = "Add",
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 16.sp
+            )
         }
     }
 }
@@ -259,8 +270,10 @@ fun ForecastTableView(forecastList: List<Item0>) {
             ) {
                 Text(text = Util.extractDayOfWeek(forecast.dt_txt), modifier = Modifier.weight(1f))
                 Text(text = forecast.weather.first().main, modifier = Modifier.weight(1f))
-                Text(text = "H:${(forecast.main.temp_max - 273.15).toInt()}° \tL:${(forecast.main.temp_min - 273.15).toInt()}°",
-                    modifier = Modifier.weight(1f))
+                Text(
+                    text = "H:${(forecast.main.temp_max - 273.15).toInt()}° \tL:${(forecast.main.temp_min - 273.15).toInt()}°",
+                    modifier = Modifier.weight(1f)
+                )
             }
             Spacer(modifier = Modifier.height(8.dp))
         }
